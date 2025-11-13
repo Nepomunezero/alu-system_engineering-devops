@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+#creating something that has something to do with RSA and is 4096 bits bit.
+
+ssh-keygen -t rsa -b 4096 -f school -N "betty"
