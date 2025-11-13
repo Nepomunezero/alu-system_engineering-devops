@@ -1,0 +1,4 @@
+#!/bin/bash
+#connect to the server using the private key
+
+ssh -i ~/.ssh/school ubuntu18.205.194.33
