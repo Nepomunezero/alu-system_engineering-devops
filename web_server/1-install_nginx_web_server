@@ -12,7 +12,7 @@ apt-get install -y nginx
 sed -i 's/listen 80 default_server;/listen 80 default_server;/' /etc/nginx/sites-available/default
 
 # Create the webpage with the required content
-echo "Holberton School for the win!" > /var/www/html/index.html
+echo "Holberton School" > /var/www/html/index.html
 
 # Restart nginx WITHOUT using systemctl
 service nginx restart
