@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 | Ceci n'est pas une page</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&display=swap');
+
+        body {
+            margin: 0;
+            height: 100vh;
+            background: #0a0a0a;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            font-family: "Montserrat", sans-serif;
+            overflow: hidden;
+        }
+
+        h1 {
+            font-size: 150px;
+            letter-spacing: 5px;
+            position: relative;
+            margin: 0;
+            animation: glitch 1s infinite;
+        }
+
+        .subtitle {
+            font-size: 28px;
+            margin-top: 10px;
+            opacity: 0.8;
+            letter-spacing: 1px;
+        }
+
+        @keyframes glitch {
+            0% { text-shadow: 2px 2px #ff00c8, -2px -2px #00ffe7; }
+            25% { text-shadow: -4px 2px #ff00c8, 3px -2px #00ffe7; }
+            50% { text-shadow: 2px -3px #ff00c8, -4px 3px #00ffe7; }
+            75% { text-shadow: -2px -3px #ff00c8, 2px 3px #00ffe7; }
+            100% { text-shadow: 2px 2px #ff00c8, -2px -2px #00ffe7; }
+        }
+
+        .btn {
+            margin-top: 40px;
+            padding: 15px 35px;
+            border: none;
+            background: #ffffff15;
+            color: #fff;
+            font-size: 18px;
+            border-radius: 12px;
+            backdrop-filter: blur(6px);
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: #ffffff25;
+            transform: translateY(-3px);
+        }
+    </style>
+</head>
+<body>
+
+    <h1>404</h1>
+    <p class="subtitle"><em>Ceci n'est pas une page</em></p>
+
+    <a href="/">
+        <button class="btn">Back to Home</button>
+    </a>
+
+</body>
+</html>
