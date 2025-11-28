@@ -1,14 +1,7 @@
 #!/usr/bin/env bash
-# Configure Nginx to redirect /redirect_me with a 301
-
-set -e
-
-# Install Nginx
-apt-get update -y
-apt-get install -y nginx
-
-# Configure the redirect using sed
-sed -i '/server_name _;/a \    location /redirect_me {\n        return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;\n    }' /etc/nginx/sites-available/default
-
-# Restart nginx WITHOUT systemctl
-service nginx restart
+# Configure nginx server redirecting to another page
+sudo apt-get update
+sudo apt-get -y install nginx
+newlines="\\\trewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;"
+sudo sed -i "53i $newlines" /etc/nginx/sites-available/default
+sudo service nginx restart
