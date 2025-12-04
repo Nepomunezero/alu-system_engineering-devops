@@ -1,11 +1,41 @@
 #!/usr/bin/env bash
-# Configures Nginx on a new Ubuntu machine to redirect /redirect_me to YouTube
+# 3-redirection: configure Nginx to redirect /redirect_me to YouTube
 
+set -e
+
+# Update packages and install nginx
 apt-get update -y
 apt-get install -y nginx
 
-# Add the redirect in the default server block
-sed -i '/server_name _;/a \    location /redirect_me {\n        return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;\n    }' /etc/nginx/sites-available/default
+# Backup old config if exists
+[ -f /etc/nginx/sites-available/default ] && cp /etc/nginx/sites-available/default /etc/nginx/sites-available/default.bak
 
-# Restart nginx
-service nginx restart
+# Write clean default site with redirect
+cat > /etc/nginx/sites-available/default <<'EOF'
+server {
+    listen 80 default_server;
+    listen [::]:80 default_server;
+
+    server_name _;
+
+    root /var/www/html;
+    index index.html index.htm;
+
+    # Exact redirect for assignment
+    location = /redirect_me {
+        return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
+    }
+
+    # Default location
+    location / {
+        try_files $uri $uri/ =404;
+    }
+}
+EOF
+
+# Enable the site
+ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
+
+# Test and start nginx
+nginx -t
+systemctl restart nginx || service nginx restart
